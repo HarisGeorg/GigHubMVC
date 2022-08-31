@@ -39,11 +39,19 @@ namespace GigHubMVC.Controllers
             //var artist = _context.Users.Single(u => u.Id == artistId);  //den xriazetai SignleOrDefault giati exo sigoura Id opote den kindinevo na min to vro kai na skasei
             //var genre = _context.Genres.Single(g => g.Id == viewModel.Genre);
 
+
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList();    //Ksanafortono ta Genres oste otan paei na fortoseo to Create View na ta exei gia tin DropDown
+                return View("Create", viewModel);               //fortonei to view Create.schtml stelnontas tou to viewModel
+            }
+
             var gig = new Gig()
             {
                 //Artist = artist,
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                //DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),     To steila sto GigFormViewModel
+                DateTime = viewModel.GetGetTime(),
                 Venue = viewModel.Venue,
                 //Genre = genre
                 GenreId = viewModel.Genre
