@@ -33,6 +33,7 @@ namespace GigHubMVC.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
         {
             //var artistId = User.Identity.GetUserId();
