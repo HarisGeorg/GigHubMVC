@@ -66,15 +66,15 @@ h6,
     margin-bottom: 20px;
 }
 
-.form-control{
+.form-control {
     font-size: 17px;
-    padding: 20px 15px;
+    height: 50px;
     border-radius: 9px;
 }
 
-.btn-control{
+.btn-control {
     font-size: 17px;
-    padding: 7px 20px;
+    padding: 20px 15px;
     border-radius: 9px;
 }
 
@@ -92,7 +92,17 @@ h6,
     border-color: rgba(205,40,39,0.55);
 }
 
+.nav a:hover {
+    background-color: brown !important;
+}
+
 .dropdown-menu{
     box-shadow: none;
     min-width: 176px;
+}
+
+/*override tis <span> class="field-validation-error" (pou ftiaxnetai sisrtimika) oste na emfanizei kokkina entona minimata*/
+span.field-validation-error{
+    color: red;
+    font-weight: bold;
 }
