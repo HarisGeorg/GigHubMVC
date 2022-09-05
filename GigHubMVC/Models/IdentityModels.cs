@@ -26,6 +26,7 @@ namespace GigHubMVC.Models
     {
         public DbSet<Gig> Gigs { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Attendance> Attendances { get; set; } 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -34,6 +35,23 @@ namespace GigHubMVC.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.Gig)
+                .WithMany()    //attendances, alla epeidi den exo to navigation property sto gig to grafo sketo. Etsi apeikonizo to Attendance <-> Gig
+                .WillCascadeOnDelete(false);
+
+
+            // An egrafa edo 
+            //modelBuilder.Entity<Attendance>()
+            //    .HasRequired(a => a.Attendee)
+            //    .WithMany()
+            // O sindiasmos me to pano tha arkouse gia na dimiourgiso ManyToMany kai na antikatastiso ta Annotations telika
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
