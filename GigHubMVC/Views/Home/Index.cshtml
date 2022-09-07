@@ -36,7 +36,7 @@
                 //console.log(e)
                 var button = $(e.target);                       /* kataxoro se mia metavliti button o,ti exei to target tou klick event */
                 //console.log(button);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") }). /* paei stin post tou link kai stelnei ena object gigId pou tha exei san timi tin timi tou attribute tou button pou legetai data-gig-id*/
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") }). /* paei stin post tou link kai stelnei gigId pou tha exei san data(object) to attribute tou button pou legetai data-gig-id*/
                     done(function () {
                         button
                             .removeClass("btn-inverted")
