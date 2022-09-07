@@ -72,14 +72,24 @@ h6,
     border-radius: 9px;
 }
 
-.btn-control {
+/*.btn-control {
     font-size: 17px;
     padding: 20px 15px;
     border-radius: 9px;
+}*/
+
+.btn-default {
+    /*font-size: 17px;
+    padding: 7px 20px;*/
+    border-radius: 9px;
+    background-color: #ff4342;
+    color:white;
 }
 
-.btn-primary {
-    background-color: red;
+.btn-inverted {
+    border-radius: 9px;
+    background-color: white;
+    color: black;
 }
 
 .form-control:focus{

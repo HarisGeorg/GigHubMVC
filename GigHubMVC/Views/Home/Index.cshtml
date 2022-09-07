@@ -22,7 +22,31 @@
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
+                <button data-gig-id="@gig.Id"   
+                        class="btn-inverted btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
             </div>
         </li>
     }
 </ul>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {                         /*perimene na fortosei i selida kai meta trekse to script allios min kaneis tipota*/
+            $(".js-toggle-attendance").click(function (e) {     /*sto klick event tou element pou exei tin klasi js-toggle-attendance kataxorise olo to event sto (e), dld oti exei mesa to button*/
+                //console.log(e)
+                var button = $(e.target);                       /* kataxoro se mia metavliti button o,ti exei to target tou klick event */
+                //console.log(button);
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") }). /* paei stin post tou link kai stelnei ena object gigId pou tha exei san timi tin timi tou attribute tou button pou legetai data-gig-id*/
+                    done(function () {
+                        button
+                            .removeClass("btn-inverted")
+                            .addClass("btn-default")
+                            .text("Going")
+                    })
+                    .fail(function () {
+                        alert("Something Failed")
+                    });
+            });
+        });
+    </script>
+    }
