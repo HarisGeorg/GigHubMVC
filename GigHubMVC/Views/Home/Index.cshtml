@@ -17,7 +17,9 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @gig.Artist.Name
+                    @gig.Artist.Name 
+                    <button data-user-id="@gig.ArtistId"
+                            class="btn-inverted btn-link btn-sm js-toggle-follow">Follow</button>
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
@@ -36,8 +38,8 @@
                 //console.log(e)
                 var button = $(e.target);                       /* kataxoro se mia metavliti button o,ti exei to target tou klick event */
                 //console.log(button);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") }). /* paei stin post tou link kai stelnei gigId pou tha exei san data(object) to attribute tou button pou legetai data-gig-id*/
-                    done(function () {
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") }) /* paei stin post tou link kai stelnei gigId pou tha exei san data(object) to attribute tou button pou legetai data-gig-id*/
+                    .done(function () {
                         button
                             .removeClass("btn-inverted")
                             .addClass("btn-default")
@@ -47,6 +49,20 @@
                         alert("Something Failed")
                     });
             });
+
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { FolloweeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button
+                            .text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something Failed")
+                    });
+            });
         });
     </script>
+
     }
+
